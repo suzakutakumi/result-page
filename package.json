@@ -1,0 +1,33 @@
+{
+  "name": "result-page",
+  "version": "1.0.0",
+  "description": "生配信の時に、勝敗の数や連勝、最大の連勝を操作、表示するWebページ",
+  "scripts": {
+    "start": "webpack-cli serve --mode development",
+    "prebuild": "rimraf docx",
+    "build": "webpack --progress --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suzakutakumi/result-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suzakutakumi/result-page/issues"
+  },
+  "homepage": "https://github.com/suzakutakumi/result-page#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
