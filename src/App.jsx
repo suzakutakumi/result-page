@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 function App() {
     let [column, setColumn] = useState([0, 0, 0, 0])
+    let [opc,setOpc]=useState(0.5)
     let showColumn = []
     const UNITS = ["勝 ", "敗 ", "連勝 最大", "連勝"]
     let plusBTN = []
@@ -43,7 +44,7 @@ function App() {
         } />  </>)
     }
     return (
-        <div>
+        <div　style={{backgroundColor:"rgba(255,255,255,"+opc+")"}}>
             {showColumn}
             <br />
             <div style={{fontSize:50}}>
@@ -61,8 +62,19 @@ function App() {
                     setFsize(fontS - 1)
                 }}>-</button>
                 <br />
-                文字色
+                背景の透過度合い:
+                <input min="0.0" max="1.0" step="0.1" type="range" onChange={(e)=>{
+                    setOpc(e.target.value)
+                }}/>
+                {opc*100}%
+                <br />
+                文字色:
                 <input style={{height:60}} value={fontColor} type="color" onChange={
+                    (e) => {
+                        setFcolor(e.target.value)
+                    }
+                } /> 
+                <input style={{width:200,height:60,fontSize:"1em"}} value={fontColor} type="text" onChange={
                     (e) => {
                         setFcolor(e.target.value)
                     }
