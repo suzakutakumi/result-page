@@ -7,56 +7,67 @@ function App() {
     const UNITS = ["勝 ", "敗 ", "連勝 最大", "連勝"]
     let plusBTN = []
     let minusBTN = []
-    let chgColumn=[]
-    let [fontS,setFsize] = useState(20)
-    let columnFont={
+    let chgColumn = []
+    let [fontS, setFsize] = useState(50)
+    let [fontColor, setFcolor] = useState("#000000")
+    let columnFont = {
         fontSize: fontS,
+        color: fontColor
     }
     for (let i = 0; i < 4; i++) {
         showColumn.push(<span style={columnFont}>{column[i]}{UNITS[i]}</span>)
-        plusBTN.push(<button id={"plus"+i} onClick={() => {
+        plusBTN.push(<><button style={{width:90,height:60,fontSize:"1em"}} id={"plus" + i} onClick={() => {
             let newColumn = [...column]
             newColumn[i] += 1
-            if(i==0){
+            if (i == 0) {
                 newColumn[2] += 1
-                if(newColumn[3]<newColumn[2]){
-                    newColumn[3]=newColumn[2]
+                if (newColumn[3] < newColumn[2]) {
+                    newColumn[3] = newColumn[2]
                 }
-            }else if(i==1){
+            } else if (i == 1) {
                 newColumn[2] = 0
             }
             setColumn(newColumn)
-        }}>+</button>)
-        minusBTN.push(<button onClick={() => {
+        }}>+</button> </>)
+        minusBTN.push(<><button style={{width:90,height:60,fontSize:"1em"}} onClick={() => {
             let newColumn = [...column]
             newColumn[i] -= 1
             setColumn(newColumn)
-        }}>-</button>)
-        chgColumn.push(<input value={column[i]} type="number" onChange={
-            (e)=>{
+        }}>-</button> </>)
+        chgColumn.push(<><input style={{width:82,height:60,fontSize:"1em"}} value={column[i]} type="number" onChange={
+            (e) => {
                 let newColumn = [...column]
-                newColumn[i] =e.target.value
+                newColumn[i] = Number(e.target.value)
                 setColumn(newColumn)
             }
-        }/>)
+        } />  </>)
     }
     return (
         <div>
             {showColumn}
             <br />
-            {plusBTN}
-            <br />
-            {chgColumn}
-            <br />
-            {minusBTN}
-            <br/>
-            文字サイズ{fontS}px:
-            <button onClick={() => {
-                setFsize(fontS+1)
-            }}>+</button>
-            <button onClick={() => {
-                setFsize(fontS-1)
-            }}>-</button>
+            <div style={{fontSize:50}}>
+                {plusBTN}
+                <br />
+                {chgColumn}
+                <br />
+                {minusBTN}
+                <br />
+                文字サイズ{fontS}px:
+                <button style={{width:60,height:60,fontSize:"1em"}} onClick={() => {
+                    setFsize(fontS + 1)
+                }}>+</button>
+                <button style={{width:60,height:60,fontSize:"1em"}} onClick={() => {
+                    setFsize(fontS - 1)
+                }}>-</button>
+                <br />
+                文字色
+                <input style={{height:60}} value={fontColor} type="color" onChange={
+                    (e) => {
+                        setFcolor(e.target.value)
+                    }
+                } />
+            </div>
         </div>
     )
 }
